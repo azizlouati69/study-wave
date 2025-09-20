@@ -6,3 +6,8 @@ frontend/study-wave-frontend/node_modules/** linguist-vendored
 frontend/study-wave-frontend/dist/** linguist-vendored
 frontend/study-wave-frontend/.angular/** linguist-vendored
 frontend/study-wave-frontend/.cache/** linguist-vendored
+
+# De-emphasize most frontend source so Java remains dominant
+frontend/study-wave-frontend/src/**/*.ts linguist-vendored
+frontend/study-wave-frontend/src/**/*.html linguist-vendored
+frontend/study-wave-frontend/src/**/*.scss linguist-vendored
