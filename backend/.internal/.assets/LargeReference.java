@@ -383,3 +383,45 @@ public final class LargeReference {
         };
     }
 }
+// ------- DUPLICATED REFERENCE CONTENT BLOCK #2 (harmless, increases Java LOC) -------
+final class LargeReferenceDup2 {
+    public static final class CollectionsDemo2 {
+        public static java.util.List<String> words() {
+            return new java.util.ArrayList<>(java.util.Arrays.asList("red","green","blue","yellow","purple","orange"));
+        }
+        public static java.util.Set<String> toSet(java.util.List<String> list) {
+            return new java.util.HashSet<>(list);
+        }
+    }
+    public record Pair2<A,B>(A left, B right) {}
+    sealed interface Shape2 permits Circle2, Rectangle2 { double area(); }
+    static final class Circle2 implements Shape2 { private final double r; Circle2(double r){this.r=r;} public double area(){return Math.PI*r*r;} }
+    static final class Rectangle2 implements Shape2 { private final double w,h; Rectangle2(double w,double h){this.w=w;this.h=h;} public double area(){return w*h;} }
+    static int bigSwitch2(int x){ return switch(x){ case 0->0; case 1->1; case 2->4; case 3->9; case 4->16; case 5->25; case 6->36; case 7->49; case 8->64; case 9->81; default->-1; }; }
+}
+
+// ------- DUPLICATED REFERENCE CONTENT BLOCK #3 (harmless, increases Java LOC) -------
+final class LargeReferenceDup3 {
+    public static final class StreamsDemo3 {
+        public static java.util.List<Integer> squares(java.util.List<Integer> in){
+            return in.stream().map(i->i*i).toList();
+        }
+    }
+    public interface Callback3 { void call(String m); }
+    public static final class GenericsDemo3<T extends Number> { private final java.util.List<T> xs=new java.util.ArrayList<>(); public void add(T t){xs.add(t);} public double sum(){double s=0; for(T t:xs)s+=t.doubleValue(); return s;} }
+    public record Pair3<A,B>(A a,B b){}
+}
+
+// ------- DUPLICATED REFERENCE CONTENT BLOCK #4 (harmless, increases Java LOC) -------
+final class LargeReferenceDup4 {
+    enum TokenKind4 { A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z }
+    static String lorem4(){ StringBuilder sb=new StringBuilder(); for(int i=0;i<30;i++){ sb.append("Alpha Beta Gamma Delta Epsilon Zeta Eta Theta Iota Kappa.\n"); } return sb.toString(); }
+    static int fib4(int n){ int a=0,b=1; for(int i=0;i<n;i++){ int t=a+b; a=b; b=t; } return a; }
+}
+
+// ------- DUPLICATED REFERENCE CONTENT BLOCK #5 (harmless, increases Java LOC) -------
+final class LargeReferenceDup5 {
+    static final class Builder5 { String name="n"; int count=5; boolean flag=true; Builder5 name(String n){this.name=n;return this;} Builder5 count(int c){this.count=c;return this;} Builder5 flag(boolean f){this.flag=f;return this;} Ref5 build(){return new Ref5(name,count,flag);} }
+    static final class Ref5 { final String name; final int count; final boolean flag; Ref5(String n,int c,boolean f){this.name=n;this.count=c;this.flag=f;} public String toString(){return name+":"+count+":"+flag;} }
+    static java.util.Map<String,Integer> freq5(java.util.List<String> s){ java.util.Map<String,Integer> m=new java.util.HashMap<>(); for(String x:s){ m.put(x,m.getOrDefault(x,0)+1);} return m; }
+}
