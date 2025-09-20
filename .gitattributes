@@ -1,0 +1,5 @@
+# Exclude frontend code from GitHub Linguist language statistics
+frontend/study-wave-frontend/** linguist-vendored
+
+# Treat docs as documentation (not code)
+*.md linguist-documentation
