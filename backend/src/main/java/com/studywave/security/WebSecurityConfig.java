@@ -21,6 +21,7 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 
 import java.util.Arrays;
 import java.util.List;
+import org.springframework.http.HttpMethod;
 
 @Configuration
 @EnableWebSecurity
@@ -69,6 +70,7 @@ public class WebSecurityConfig {
             .authorizeHttpRequests(auth -> 
                 auth.requestMatchers("/api/auth/**").permitAll()
                     .requestMatchers("/api/courses/public/**").permitAll()
+                    .requestMatchers(HttpMethod.GET, "/api/courses/*/reviews/**").permitAll()
                     .requestMatchers("/h2-console/**").permitAll()
                     .requestMatchers("/api/users/register").permitAll()
                     .anyRequest().authenticated()
