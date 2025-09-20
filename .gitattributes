@@ -1,13 +1,2 @@
-# Treat docs as documentation (not code)
+# Treat docs as documentation (not code). All source code counts toward language stats.
 *.md linguist-documentation
-
-# Exclude only heavy/generated frontend folders so TS source still counts
-frontend/study-wave-frontend/node_modules/** linguist-vendored
-frontend/study-wave-frontend/dist/** linguist-vendored
-frontend/study-wave-frontend/.angular/** linguist-vendored
-frontend/study-wave-frontend/.cache/** linguist-vendored
-
-# De-emphasize most frontend source so Java remains dominant
-frontend/study-wave-frontend/src/**/*.ts linguist-vendored
-frontend/study-wave-frontend/src/**/*.html linguist-vendored
-frontend/study-wave-frontend/src/**/*.scss linguist-vendored
