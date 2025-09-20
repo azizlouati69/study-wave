@@ -1,5 +1,8 @@
-# Exclude frontend code from GitHub Linguist language statistics
-frontend/study-wave-frontend/** linguist-vendored
-
 # Treat docs as documentation (not code)
 *.md linguist-documentation
+
+# Exclude only heavy/generated frontend folders so TS source still counts
+frontend/study-wave-frontend/node_modules/** linguist-vendored
+frontend/study-wave-frontend/dist/** linguist-vendored
+frontend/study-wave-frontend/.angular/** linguist-vendored
+frontend/study-wave-frontend/.cache/** linguist-vendored
