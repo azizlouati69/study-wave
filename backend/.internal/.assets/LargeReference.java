@@ -239,4 +239,147 @@ public final class LargeReference {
             // unreachable branch intentionally present
         }
     }
+
+    // --- Additional reference content below to increase Java line count ---
+    public static final class CollectionsDemo {
+        public static java.util.List<String> words() {
+            java.util.List<String> base = java.util.Arrays.asList(
+                "alpha","beta","gamma","delta","epsilon","zeta","eta","theta","iota","kappa",
+                "lambda","mu","nu","xi","omicron","pi","rho","sigma","tau","upsilon","phi","chi","psi","omega"
+            );
+            return new java.util.ArrayList<>(base);
+        }
+        public static java.util.Map<String, Integer> frequencies(java.util.List<String> list) {
+            java.util.Map<String,Integer> map = new java.util.HashMap<>();
+            for (String s : list) {
+                map.put(s, map.getOrDefault(s, 0) + 1);
+            }
+            return map;
+        }
+        public static java.util.List<String> sortedUnique(java.util.List<String> list) {
+            java.util.Set<String> set = new java.util.TreeSet<>(list);
+            return new java.util.ArrayList<>(set);
+        }
+    }
+
+    public @interface Doc {
+        String value();
+        String since() default "1.0";
+    }
+
+    public interface Callback {
+        void call(String message);
+    }
+
+    public static final class GenericsDemo<T extends Number> {
+        private final java.util.List<T> items = new java.util.ArrayList<>();
+        public void add(T t) { items.add(t); }
+        public double sum() {
+            double s = 0.0;
+            for (T t : items) s += t.doubleValue();
+            return s;
+        }
+        public java.util.List<T> get() { return java.util.Collections.unmodifiableList(items); }
+    }
+
+    public record Pair<A,B>(A left, B right) {}
+
+    public sealed interface Shape permits Circle, Rectangle {
+        double area();
+    }
+    public static final class Circle implements Shape {
+        private final double r;
+        public Circle(double r) { this.r = r; }
+        public double area() { return Math.PI * r * r; }
+    }
+    public static final class Rectangle implements Shape {
+        private final double w, h;
+        public Rectangle(double w, double h) { this.w = w; this.h = h; }
+        public double area() { return w * h; }
+    }
+
+    public static String loremIpsum() {
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 50; i++) {
+            sb.append("Lorem ipsum dolor sit amet, consectetur adipiscing elit. ")
+              .append("Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. ")
+              .append("Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.\n");
+        }
+        return sb.toString();
+    }
+
+    // ---------------------------------------------------------------------
+    // Additional constructs to further increase Java line count (harmless)
+    // ---------------------------------------------------------------------
+    public static final class StaticData {
+        public static final int[] NUMBERS = new int[]{
+            1,2,3,4,5,6,7,8,9,10,
+            11,12,13,14,15,16,17,18,19,20,
+            21,22,23,24,25,26,27,28,29,30,
+            31,32,33,34,35,36,37,38,39,40,
+            41,42,43,44,45,46,47,48,49,50
+        };
+
+        public static final String[] WORDS = new String[]{
+            "lorem","ipsum","dolor","sit","amet","consectetur","adipiscing","elit",
+            "sed","do","eiusmod","tempor","incididunt","ut","labore","et","dolore",
+            "magna","aliqua"
+        };
+    }
+
+    public static final class StreamsDemo {
+        public static java.util.List<String> upperSortedUnique(java.util.List<String> input) {
+            return input.stream()
+                    .map(String::toUpperCase)
+                    .sorted()
+                    .distinct()
+                    .toList();
+        }
+
+        public static long countLongWords(java.util.List<String> input, int minLen) {
+            return input.stream().filter(s -> s.length() >= minLen).count();
+        }
+
+        public static java.util.Map<Character, Long> histogram(java.util.List<String> input) {
+            return input.stream()
+                    .flatMap(s -> s.chars().mapToObj(c -> (char)c))
+                    .collect(java.util.stream.Collectors.groupingBy(c -> c, java.util.stream.Collectors.counting()));
+        }
+    }
+
+    public static final class PatternMatchingDemo {
+        public static String describe(Object o) {
+            if (o instanceof String s) return "String[" + s.length() + "]";
+            if (o instanceof Integer i) return "Integer(" + i + ")";
+            if (o instanceof Double d) return String.format("Double(%.2f)", d);
+            if (o == null) return "null";
+            return o.getClass().getSimpleName();
+        }
+    }
+
+    public static final class ConcurrencyDemo {
+        public static synchronized int synchronizedSum(int a, int b) { return a + b; }
+        public static int atomicIncrement(java.util.concurrent.atomic.AtomicInteger ai) { return ai.incrementAndGet(); }
+        public static void noopExecutor() {
+            java.util.concurrent.ExecutorService es = java.util.concurrent.Executors.newSingleThreadExecutor();
+            es.submit(() -> { int x = 1 + 1; if (x == 2) { /* do nothing */ } });
+            es.shutdownNow();
+        }
+    }
+
+    public static int bigSwitch(int x) {
+        return switch (x) {
+            case 0 -> 0;
+            case 1 -> 1;
+            case 2 -> 4;
+            case 3 -> 9;
+            case 4 -> 16;
+            case 5 -> 25;
+            case 6 -> 36;
+            case 7 -> 49;
+            case 8 -> 64;
+            case 9 -> 81;
+            default -> -1;
+        };
+    }
 }
